@@ -1,0 +1,7 @@
+export class CreateMonumentDto {
+  name: string;
+  description?: string;
+  latitude: number;
+  longitude: number;
+  photos?: { url: string }[];
+}
