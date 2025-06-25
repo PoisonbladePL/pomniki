@@ -14,7 +14,7 @@ async function bootstrap() {
     credentials: true,
   });
 
-  // (opcjonalnie) prosty logger żądań
+  // Prosty logger żądań
   app.use((req, _res, next) => {
     console.log(`${req.method} ${req.url}`);
     next();

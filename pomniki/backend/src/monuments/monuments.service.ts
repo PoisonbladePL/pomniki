@@ -5,12 +5,14 @@ import { PrismaService } from '../prisma.service';
 export class MonumentsService {
   constructor(private prisma: PrismaService) {}
 
-  findAll() {
-    return this.prisma.monument.findMany({
-      include: { photos: true }
-    });
+  findAll(page: number, limit: number) {
+  return this.prisma.monument.findMany({
+    skip: (page - 1) * limit,
+    take: limit,
+    include: { photos: true },
+    orderBy: { id: 'asc' }
+  });
   }
-
   // Tworzy nowy pomnik z danymi i opcjonalnymi zdjęciami
   // Jeśli zdjęcia są podane, tworzy je w relacji z pomnikiem
   create(data: { 

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Delete, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Delete, Param, Query } from '@nestjs/common';
 import { MonumentsService } from './monuments.service';
 import { CreateMonumentDto } from './dto/create-monument.dto';
 import { UpdateMonumentDto } from './dto/update-monument.dto';
@@ -10,8 +10,8 @@ export class MonumentsController {
   constructor(private readonly monumentsService: MonumentsService) {}
 
   @Get()
-  findAll() {
-    return this.monumentsService.findAll();
+  findAll(@Query('page') page: number = 1, @Query('limit') limit: number = 10) {
+  return this.monumentsService.findAll(page, limit);
   }
 
   @Post()
